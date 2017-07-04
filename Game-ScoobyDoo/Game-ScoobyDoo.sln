@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game-ScoobyDoo", "Game-ScoobyDoo.csproj", "{BAFAC308-389D-0AAA-04CF-4AA2B2168FAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game-ScoobyDoo.Editor", "Game-ScoobyDoo.Editor.csproj", "{CCD55021-4098-50D1-0B3E-6AA849B30856}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAFAC308-389D-0AAA-04CF-4AA2B2168FAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAFAC308-389D-0AAA-04CF-4AA2B2168FAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAFAC308-389D-0AAA-04CF-4AA2B2168FAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAFAC308-389D-0AAA-04CF-4AA2B2168FAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCD55021-4098-50D1-0B3E-6AA849B30856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD55021-4098-50D1-0B3E-6AA849B30856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD55021-4098-50D1-0B3E-6AA849B30856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD55021-4098-50D1-0B3E-6AA849B30856}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
