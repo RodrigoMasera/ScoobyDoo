@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "504139789134",
+    "firebase_url": "https://scooby-doo-c9316.firebaseio.com",
+    "project_id": "scooby-doo-c9316",
+    "storage_bucket": "scooby-doo-c9316.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504139789134:android:db0a07238e5c0be4",
+        "android_client_info": {
+          "package_name": "com.GameScoobyDoo.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504139789134-todifiq4qm330qmt07hlka43jag0hvo6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB47yqf7vqlvf1BDohbDPrSmNyBh9xHVEU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
