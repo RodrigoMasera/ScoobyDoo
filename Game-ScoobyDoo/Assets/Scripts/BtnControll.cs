@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Firebase;
-using Firebase.Database;
+using Firebase.Auth;
 using Firebase.Unity.Editor;
 
 public class BtnControll : MonoBehaviour {
@@ -17,9 +17,39 @@ public class BtnControll : MonoBehaviour {
     public AudioSource music;
     public InputField emailInput;
     public InputField senhaInput;
-    private DatabaseReference reference;
+    Firebase.Auth.FirebaseAuth auth;
+    Firebase.Auth.FirebaseUser user;
+    Firebase.DependencyStatus dependencyStatus = Firebase.DependencyStatus.UnavailableOther;
 
     void Start() {
+
+
+        dependencyStatus = Firebase.FirebaseApp.CheckDependencies();
+        if (dependencyStatus != Firebase.DependencyStatus.Available)
+        {
+            Firebase.FirebaseApp.FixDependenciesAsync().ContinueWith(task => {
+                dependencyStatus = Firebase.FirebaseApp.CheckDependencies();
+                if (dependencyStatus == Firebase.DependencyStatus.Available)
+                {
+                    InitializeFirebase();
+                }
+                else
+                {
+                    // This should never happen if we're only using Firebase Analytics.
+                    // It does not rely on any external dependencies.
+                    Debug.LogError(
+                        "Could not resolve all Firebase dependencies: " + dependencyStatus);
+                }
+            });
+        }
+        else
+        {
+            InitializeFirebase();
+        }
+
+
+
+
         painelOptions.SetActive(false);
         painelButtons.SetActive(true);
         PlayerPrefs.SetFloat("sound", sound.volume);
@@ -70,8 +100,7 @@ public class BtnControll : MonoBehaviour {
     }
 
     private void novoUsuario() {
-        Autenticacao autenticacao = new Autenticacao();
-        autenticacao.criarUsuario(emailInput.text, senhaInput.text);
+        criarUsuario(emailInput.text, senhaInput.text);
         voltarMenu();
     }
 
@@ -125,4 +154,51 @@ public class BtnControll : MonoBehaviour {
         painelCadastro.GetComponent<RectTransform>().offsetMin = new Vector2(-1420f, 0f);
         painelCadastro.GetComponent<RectTransform>().offsetMax = new Vector2(1384f, 1f);
     }
+
+    public void criarUsuario(string email, string password)
+    {
+        auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
+            if (task.IsCanceled)
+            {
+                Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
+                return;
+            }
+            if (task.IsFaulted)
+            {
+                Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                return;
+            }
+
+            // Firebase user has been created.
+            Firebase.Auth.FirebaseUser newUser = task.Result;
+            Debug.LogFormat("Firebase user created successfully: {0} ({1})",
+                newUser.DisplayName, newUser.UserId);
+        });
+    }
+
+    void InitializeFirebase()
+    {
+        Debug.Log("Setting up Firebase Auth");
+        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+        auth.StateChanged += AuthStateChanged;
+    }
+    // Track state changes of the auth object.
+    void AuthStateChanged(object sender, System.EventArgs eventArgs)
+    {
+        if (auth.CurrentUser != user)
+        {
+            if (user == null && auth.CurrentUser != null)
+            {
+                Debug.Log("Signed in " + auth.CurrentUser.DisplayName);
+            }
+            else if (user != null && auth.CurrentUser == null)
+            {
+                Debug.Log("Signed out " + user.DisplayName);
+            }
+            user = auth.CurrentUser;
+            //Debug.Log("Signed in " + auth.CurrentUser.DisplayName);
+
+        }
+    }
+
 }

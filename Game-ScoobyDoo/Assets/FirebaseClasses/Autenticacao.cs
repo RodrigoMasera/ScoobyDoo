@@ -3,15 +3,15 @@ using Firebase;
 using Firebase.Auth;
 using Firebase.Unity.Editor;
 
-public class Autenticacao {
+public class Autenticacao : MonoBehaviour
+{
 
     private FirebaseAuth auth;
     private FirebaseUser user;
 
-    public Autenticacao() {
-        Debug.Log("teste1");
+    void Start() {
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
-        Debug.Log("teste2");
+        auth.StateChanged += AuthStateChanged;
     }
 
     public FirebaseUser getUser() {
@@ -19,25 +19,23 @@ public class Autenticacao {
     }
 
     public void criarUsuario(string email, string password) {
-        Debug.Log("email: " + email + "\npassword: " + password);
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
-            if (task.IsCanceled) {
-                Debug.LogError("CreateUserWithEmailAndPasswordAsync foi cancelado.");
+            if (task.IsCanceled)
+            {
+                Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
                 return;
             }
-            if (task.IsFaulted) {
-                Debug.LogError("CreateUserWithEmailAndPasswordAsync encontrou um erro: " + task.Exception);
+            if (task.IsFaulted)
+            {
+                Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
                 return;
             }
 
             // Firebase user has been created.
-            user = task.Result;
-            Debug.Log("user: " + user);
-            Debug.LogFormat("Usuario criado com sucesso: {0} ({1})",
-                user.DisplayName, user.UserId);
+            Firebase.Auth.FirebaseUser newUser = task.Result;
+            Debug.LogFormat("Firebase user created successfully: {0} ({1})",
+                newUser.DisplayName, newUser.UserId);
         });
-
-        logar(email, password);
     }
 
     public void logar(string email, string password) {
@@ -59,6 +57,7 @@ public class Autenticacao {
     }
 
     private void InitializeFirebase() {
+        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
         auth.StateChanged += AuthStateChanged;
         AuthStateChanged(this, null);
     }
