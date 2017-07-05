@@ -9,6 +9,9 @@ public class Autenticacao {
     private FirebaseUser user;
 
     public Autenticacao() {
+        Debug.Log("teste1");
+        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+        Debug.Log("teste2");
     }
 
     public FirebaseUser getUser() {
@@ -16,6 +19,7 @@ public class Autenticacao {
     }
 
     public void criarUsuario(string email, string password) {
+        Debug.Log("email: " + email + "\npassword: " + password);
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
             if (task.IsCanceled) {
                 Debug.LogError("CreateUserWithEmailAndPasswordAsync foi cancelado.");
@@ -28,6 +32,7 @@ public class Autenticacao {
 
             // Firebase user has been created.
             user = task.Result;
+            Debug.Log("user: " + user);
             Debug.LogFormat("Usuario criado com sucesso: {0} ({1})",
                 user.DisplayName, user.UserId);
         });
@@ -54,7 +59,6 @@ public class Autenticacao {
     }
 
     private void InitializeFirebase() {
-        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
         auth.StateChanged += AuthStateChanged;
         AuthStateChanged(this, null);
     }

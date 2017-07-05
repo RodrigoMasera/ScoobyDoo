@@ -81,26 +81,17 @@
     <Reference Include="Facebook.Unity.Settings">
       <HintPath>Library\FacebookSDK\Facebook.Unity.Settings.dll</HintPath>
     </Reference>
-    <Reference Include="Google.MiniJson">
-      <HintPath>Assets\Firebase\Plugins\Google.MiniJson.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Compat">
-      <HintPath>Assets\Firebase\Plugins\Unity.Compat.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Tasks">
-      <HintPath>Assets\Firebase\Plugins\Unity.Tasks.dll</HintPath>
+    <Reference Include="Firebase.Analytics">
+      <HintPath>Assets\Firebase\Plugins\Firebase.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.App">
       <HintPath>Assets\Firebase\Plugins\Firebase.App.dll</HintPath>
     </Reference>
-    <Reference Include="Firebase.Analytics">
-      <HintPath>Assets\Firebase\Plugins\Firebase.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Messaging">
-      <HintPath>Assets\Firebase\Plugins\Firebase.Messaging.dll</HintPath>
-    </Reference>
     <Reference Include="Firebase.Auth">
       <HintPath>Assets\Firebase\Plugins\Firebase.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Database">
+      <HintPath>Assets\Firebase\Plugins\Firebase.Database.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.DynamicLinks">
       <HintPath>Assets\Firebase\Plugins\Firebase.DynamicLinks.dll</HintPath>
@@ -108,23 +99,33 @@
     <Reference Include="Firebase.Invites">
       <HintPath>Assets\Firebase\Plugins\Firebase.Invites.dll</HintPath>
     </Reference>
+    <Reference Include="Firebase.Messaging">
+      <HintPath>Assets\Firebase\Plugins\Firebase.Messaging.dll</HintPath>
+    </Reference>
     <Reference Include="Firebase.RemoteConfig">
       <HintPath>Assets\Firebase\Plugins\Firebase.RemoteConfig.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.Sharpen">
-      <HintPath>Assets\Firebase\Plugins\Google.Sharpen.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.Storage">
       <HintPath>Assets\Firebase\Plugins\Firebase.Storage.dll</HintPath>
     </Reference>
-    <Reference Include="Firebase.Database">
-      <HintPath>Assets\Firebase\Plugins\Firebase.Database.dll</HintPath>
+    <Reference Include="Google.MiniJson">
+      <HintPath>Assets\Firebase\Plugins\Google.MiniJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Sharpen">
+      <HintPath>Assets\Firebase\Plugins\Google.Sharpen.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Compat">
+      <HintPath>Assets\Firebase\Plugins\Unity.Compat.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Tasks">
+      <HintPath>Assets\Firebase\Plugins\Unity.Tasks.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DAO\RealTimeDB.cs" />
     <Compile Include="Assets\FirebaseClasses\Autenticacao.cs" />
     <Compile Include="Assets\FirebaseClasses\GoogleSignIn.cs" />
-    <Compile Include="Assets\FirebaseClasses\RealTimeDB.cs" />
+    <Compile Include="Assets\FirebaseClasses\BancoDoFirebase.cs" />
     <Compile Include="Assets\Model\Usuario.cs" />
     <Compile Include="Assets\Scripts\BtnControll.cs" />
     <Compile Include="Assets\Scripts\GameOver.cs" />

@@ -3,10 +3,10 @@ using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
 
-public class RealTimeDB {
+public class BancoDoFirebase {
     private DatabaseReference reference;
 
-    public RealTimeDB() {
+    public BancoDoFirebase() {
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://scooby-doo-c9316.firebaseio.com/");
         reference = FirebaseDatabase.DefaultInstance.RootReference;
     }
