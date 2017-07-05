@@ -10,10 +10,13 @@ public class BtnControll : MonoBehaviour {
     
     public GameObject painelButtons;
     public GameObject painelOptions;
+    public GameObject painelCadastro;
     public Slider soundSlider;
     public AudioSource sound;
     public Slider musicSlider;
     public AudioSource music;
+    public InputField emailInput;
+    public InputField senhaInput;
     private DatabaseReference reference;
 
     void Start() {
@@ -40,7 +43,7 @@ public class BtnControll : MonoBehaviour {
         }
     }
 
-    public void setOperation(string comando) {
+    private void setOperation(string comando) {
         switch (comando) {
             case "jogo":
                 play();
@@ -54,31 +57,72 @@ public class BtnControll : MonoBehaviour {
             case "opcoes":
                 opcoes();
                 break;
+            case "cadastro":
+                cadastro();
+                break;
+            case "novoUsuario":
+                novoUsuario();
+                break;
             case "voltarMenu":
                 voltarMenu();
                 break;
         }
     }
 
-    public void voltarMenu() {
-        painelButtons.SetActive(true);
-        painelOptions.SetActive(false);
+    private void novoUsuario() {
+        Autenticacao autenticacao = new Autenticacao();
+        autenticacao.criarUsuario(emailInput.text, senhaInput.text);
+        voltarMenu();
     }
 
-    public void opcoes() {
+    private void voltarMenu() {
+        setCadastro();
+        setOptions();
+        painelOptions.SetActive(false);
+        painelCadastro.SetActive(false);
+        painelButtons.SetActive(true);
+    }
+
+    private void opcoes() {
+        setMeio(painelOptions);
+        setCadastro();
+        painelCadastro.SetActive(false);
         painelButtons.SetActive(false);
         painelOptions.SetActive(true);
     }
 
-    public void play() {
+    private void cadastro() {
+        setMeio(painelCadastro);
+        setOptions();
+        painelButtons.SetActive(false);
+        painelOptions.SetActive(false);
+        painelCadastro.SetActive(true);
+    }
+
+    private void play() {
         Application.LoadLevel("Jogo");
     }
 
-    public void pausa() {
+    private void pausa() {
         Time.timeScale = 0;
     }
 
-    public void sair() {
+    private void sair() {
         Application.Quit();
+    }
+
+    private void setMeio(GameObject gameObject) {
+        gameObject.GetComponent<RectTransform>().offsetMin = new Vector2(0.160002f, 0f);
+        gameObject.GetComponent<RectTransform>().offsetMax = new Vector2(2.824515e-05f, 1f);
+    }
+
+    private void setOptions() {
+        painelOptions.GetComponent<RectTransform>().offsetMin = new Vector2(1420f, 0f);
+        painelOptions.GetComponent<RectTransform>().offsetMax = new Vector2(-1384f, 1f);
+    }
+
+    private void setCadastro() {
+        painelCadastro.GetComponent<RectTransform>().offsetMin = new Vector2(-1420f, 0f);
+        painelCadastro.GetComponent<RectTransform>().offsetMax = new Vector2(1384f, 1f);
     }
 }

@@ -122,7 +122,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DAO\RealTimeDB.cs" />
+    <Compile Include="Assets\FirebaseClasses\Autenticacao.cs" />
+    <Compile Include="Assets\FirebaseClasses\GoogleSignIn.cs" />
+    <Compile Include="Assets\FirebaseClasses\RealTimeDB.cs" />
     <Compile Include="Assets\Model\Usuario.cs" />
     <Compile Include="Assets\Scripts\BtnControll.cs" />
     <Compile Include="Assets\Scripts\GameOver.cs" />
