@@ -29,14 +29,14 @@ public class ObstacleControler : MonoBehaviour {
             Destroy(transform.gameObject);
         }
 
-        if(x < player.transform.position.x && !pontua)
+        if(x+0.3f < player.transform.position.x && !pontua)
         {
             pontua = true;
             PlayerController.pontuacao++;
         }
 
 
-        if (PlayerController.pontuacao > dificuldade && dificuldade < 20)
+        if (PlayerController.pontuacao > dificuldade && dificuldade < 35)
         {
             dificuldade += 5;
             speed += 0.05f;

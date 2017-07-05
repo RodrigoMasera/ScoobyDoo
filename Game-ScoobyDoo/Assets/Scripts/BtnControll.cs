@@ -11,6 +11,7 @@ public class BtnControll : MonoBehaviour {
     public GameObject painelButtons;
     public GameObject painelOptions;
     public GameObject painelCadastro;
+    public GameObject painelRecorde;
     public Slider soundSlider;
     public AudioSource sound;
     public Slider musicSlider;
@@ -21,6 +22,7 @@ public class BtnControll : MonoBehaviour {
     Firebase.Auth.FirebaseUser user;
     Firebase.DependencyStatus dependencyStatus = Firebase.DependencyStatus.UnavailableOther;
 
+<<<<<<< HEAD
     void Start() {
 
 
@@ -50,6 +52,9 @@ public class BtnControll : MonoBehaviour {
 
 
 
+=======
+    void Start() { 
+>>>>>>> c8d15937bfacd4e80ba3099a55065d428497c617
         painelOptions.SetActive(false);
         painelButtons.SetActive(true);
         PlayerPrefs.SetFloat("sound", sound.volume);
@@ -96,6 +101,9 @@ public class BtnControll : MonoBehaviour {
             case "voltarMenu":
                 voltarMenu();
                 break;
+            case "recorde":
+                recorde();
+                break;
         }
     }
 
@@ -109,6 +117,7 @@ public class BtnControll : MonoBehaviour {
         setOptions();
         painelOptions.SetActive(false);
         painelCadastro.SetActive(false);
+        painelRecorde.SetActive(false);
         painelButtons.SetActive(true);
     }
 
@@ -117,6 +126,7 @@ public class BtnControll : MonoBehaviour {
         setCadastro();
         painelCadastro.SetActive(false);
         painelButtons.SetActive(false);
+        painelRecorde.SetActive(false);
         painelOptions.SetActive(true);
     }
 
@@ -125,7 +135,20 @@ public class BtnControll : MonoBehaviour {
         setOptions();
         painelButtons.SetActive(false);
         painelOptions.SetActive(false);
+        painelRecorde.SetActive(false);
         painelCadastro.SetActive(true);
+
+    }
+
+    private void recorde()
+    {
+        setMeio(painelRecorde);
+        setOptions();
+        painelButtons.SetActive(false);
+        painelOptions.SetActive(false);
+        painelCadastro.SetActive(false);
+        painelRecorde.SetActive(true);
+
     }
 
     private void play() {

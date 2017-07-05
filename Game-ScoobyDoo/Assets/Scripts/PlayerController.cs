@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour {
     public AudioSource music;
     public AudioSource gameOverMusic;
 
+    public bool controleTimeInicio;
+    public int cont;
+
     // Use this for initialization
     void Start () {
         pontuacao = 0;
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+        
         pontos.text = pontuacao.ToString();
 
         if (Input.GetMouseButtonDown(0) && groundDed)
@@ -86,8 +89,9 @@ public class PlayerController : MonoBehaviour {
         }
         anime.SetBool("jump", !groundDed);
         anime.SetBool("abaixa", slide);
-        
-	}
+
+
+    }
 
     void OnTriggerEnter2D()
     {
@@ -105,9 +109,10 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    public void sair()
+    public void voltarMenu()
     {
-        Application.Quit();
+        Time.timeScale = 1;
+        Application.LoadLevel("inicial");
     }
 
     public void jogarNovamente()
